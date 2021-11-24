@@ -46,6 +46,8 @@ class Biscoint {
   private apiSecret!: string;
   private apiUrl!: string;
   private apiTimeout!: number;
+  private httpAgent: any;
+  private httpsAgent: any;
   constructor(args: IConstructorParams = {}) {
     Object.assign(this, joi.attempt(args, schemas.constructorSchema));
     this.usNonce = 0;
@@ -163,6 +165,8 @@ class Biscoint {
       headers,
       data,
       timeout: this.apiTimeout,
+      httpAgent: this.httpAgent,
+      httpsAgent: this.httpsAgent
     };
 
     if (method === "GET" && params) {

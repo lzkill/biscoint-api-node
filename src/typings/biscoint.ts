@@ -5,6 +5,8 @@ export interface IConstructorParams {
   apiSecret?: string;
   apiUrl?: string;
   apiTimeout?: number;
+  httpAgent?: any;
+  httpsAgent?: any;
 }
 
 export interface ITickerParams {

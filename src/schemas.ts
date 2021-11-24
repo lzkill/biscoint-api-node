@@ -14,6 +14,8 @@ export const constructorSchema = joi.object({
     .precision(0)
     .default(DEFAULT_API_TIMEOUT_MS)
     .optional(),
+  httpAgent: joi.any().optional(),
+  httpsAgent: joi.any().optional(),
 });
 
 export const tickerSchema = joi.object({
