@@ -2,6 +2,24 @@ import joi from "joi";
 
 const DEFAULT_API_TIMEOUT_MS = 5000;
 
+export const proxyAuthSchema = joi.object({
+  username: joi.string().required(),
+  password: joi.string().required()
+});
+
+export const proxySchema = joi.object({
+  host: joi.string().required(),
+  port: joi
+    .number()
+    .precision(0)
+    .required(),
+  auth: proxyAuthSchema.optional(),
+  protocol: joi
+    .string()
+    .optional()
+    .default('http')
+});
+
 export const constructorSchema = joi.object({
   apiKey: joi.string().default(""),
   apiSecret: joi.string().default(""),
@@ -14,6 +32,7 @@ export const constructorSchema = joi.object({
     .precision(0)
     .default(DEFAULT_API_TIMEOUT_MS)
     .optional(),
+  apiProxy: proxySchema.optional()
 });
 
 export const tickerSchema = joi.object({

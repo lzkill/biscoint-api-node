@@ -1,10 +1,21 @@
 export type OP = "buy" | "sell";
 
+export interface IConstructorProxyParams {
+  host: string;
+  port: number;
+  auth?: {
+    username: string;
+    password:string;
+  };
+  protocol?: string;
+}
+
 export interface IConstructorParams {
   apiKey?: string;
   apiSecret?: string;
   apiUrl?: string;
   apiTimeout?: number;
+  apiProxy?: IConstructorProxyParams
 }
 
 export interface ITickerParams {

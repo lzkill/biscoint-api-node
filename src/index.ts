@@ -9,6 +9,7 @@ import {
   IConfirmOfferParams,
   IConfirmOfferResult,
   IConstructorParams,
+  IConstructorProxyParams,
   IFeesResult,
   IMetaResult,
   IOfferParams,
@@ -46,6 +47,7 @@ class Biscoint {
   private apiSecret!: string;
   private apiUrl!: string;
   private apiTimeout!: number;
+  private apiProxy: IConstructorProxyParams
   constructor(args: IConstructorParams = {}) {
     Object.assign(this, joi.attempt(args, schemas.constructorSchema));
     this.usNonce = 0;
@@ -163,6 +165,7 @@ class Biscoint {
       headers,
       data,
       timeout: this.apiTimeout,
+      proxy: this.apiProxy
     };
 
     if (method === "GET" && params) {
